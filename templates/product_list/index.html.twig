@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig'%}
+
+{% block title %}
+    Product List
+{% endblock%}
+
+{% block body%}
+    <div class="container">
+        <div class="row">
+            {% for cle in products %}
+                <div class="card col-4 m-1" style="width: 18rem;">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for key in cle.images %}
+                                <div class="carousel-item active">
+                                    <img src="{{ asset('uploads/images/' ~ key.src) }}" class="d-block w-100" alt="idk">
+                                </div>
+                            {% endfor%}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ cle.name }}</h5>
+                        <p class="card-text">{{ cle.description}}</p>
+                        <p class="card-text">{{ cle.price }} TND</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a href="{{ path('remove',{"product" : cle.id})}}" class="btn btn-secondary">Remove</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+
